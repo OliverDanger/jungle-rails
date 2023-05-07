@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    # @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
 
   def create

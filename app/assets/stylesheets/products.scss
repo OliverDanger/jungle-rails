@@ -33,6 +33,12 @@ main section.categories-show {
       a {
         text-decoration: none;
       }
+
+      .product-buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+
       font-family: "Montserrat";
       width: 100%;
       position: relative;

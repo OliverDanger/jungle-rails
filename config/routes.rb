@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'users/show'
+  get 'users/show' 
   get 'users/create'
+  get 'users' => 'users#show'
   namespace :admin do
     get 'categories/index'
     get 'categories/new'

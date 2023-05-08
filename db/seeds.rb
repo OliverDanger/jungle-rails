@@ -33,6 +33,7 @@ cat3 = Category.find_or_create_by! name: 'Trees'
 
 puts "Re-creating Products ..."
 
+LineItem.destroy_all
 Product.destroy_all
 
 cat1.products.create!({
@@ -217,6 +218,14 @@ cat3.products.create!({
   price: 79.99
 })
 
+
+puts "Re-creating Users ..."
+
+User.destroy_all
+
+user_one = User.create( email: "abc@123.456", password: "1234567890", firstname: "Revilo", lastname: "Noxid")
+user_two = User.create( email: "def@123.456", password: "1234567890", firstname: "Beans", lastname: "Cat")
+user_three = User.create( email: "ghi@123.456", password: "1234567890", firstname: "Potato", lastname: "Cat")
 
 puts "DONE!"
 

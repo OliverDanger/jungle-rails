@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'session/new'
-  get 'session/create'
-  get 'session/destroy'
-  get 'users/signup' => 'users#new'
-  get 'users' => 'users#new'
-  post 'users' => 'users#create'
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  get '/logout' => 'session#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
 
   namespace :admin do
     get 'categories/index'

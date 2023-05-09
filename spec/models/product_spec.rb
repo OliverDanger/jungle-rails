@@ -3,19 +3,6 @@ require 'products_controller'
 
 RSpec.describe Product, type: :model do
   describe 'Validations' do
-
-
-    before do
-      @product = Product.new(
-        :name => "Plant One",
-        :description => "It's green and alive.",
-        :image => "https://www.houseplantsexpert.com/wp-content/uploads/2022/09/syngonium_podophyllum.jpg",
-        :price_cents => 111,
-        :quantity => 1111,
-        :category_id => 1
-      )
-      # puts @product.inspect
-    end
     # validation tests/examples here
     describe "#add" do
       it "works!" do
@@ -23,27 +10,70 @@ RSpec.describe Product, type: :model do
       end
     end
 
-    describe "#name is present" do
-      it "checks for name" do
-        expect( @product.name ).to eq("Plant One")
-      end
+    before do
+      @category = Category.create( :name => 'Alive', id: 1 )
     end
 
-    describe "#price is present" do
-      it "checks for price" do
-        expect( @product.price_cents ).to eq(111)
+    describe "#product" do
+      it "is valid with valid attributes" do
+        puts @category.inspect
+        product = Product.new(
+          name: "Plant One",
+          description: "It's green and alive.",
+          image: "https://www.houseplantsexpert.com/wp-content/uploads/2022/09/syngonium_podophyllum.jpg",
+          price_cents: 111,
+          quantity: 1111,
+          category_id: @category.id
+        )
+        expect( product ).to be_valid
       end
-    end
 
-    describe "#quantity is present" do
-      it "checks for quantity" do
-        expect( @product.quantity ).to eq(1111)
+      it "is not valid without a name" do
+        product = Product.new(
+          name: nil,
+          description: "It's green and alive.",
+          image: "https://www.houseplantsexpert.com/wp-content/uploads/2022/09/syngonium_podophyllum.jpg",
+          price_cents: 111,
+          quantity: 1111,
+          category_id: @category.id
+        )
+        expect( product ).to_not be_valid
       end
-    end
-
-    describe "#category is present" do
-      it "checks for category" do
-        expect( @product.category_id ).to eq(1)
+  
+      it "is not valid without a price" do
+        product = Product.new(
+          name: "Plant One",
+          description: "It's green and alive.",
+          image: "https://www.houseplantsexpert.com/wp-content/uploads/2022/09/syngonium_podophyllum.jpg",
+          price_cents: nil,
+          quantity: 1111,
+          category_id: @category.id
+        )
+        expect( product ).to_not be_valid
+      end
+    
+      it "is not valid without a quantity" do
+        product = Product.new(
+          name: "Plant One",
+          description: "It's green and alive.",
+          image: "https://www.houseplantsexpert.com/wp-content/uploads/2022/09/syngonium_podophyllum.jpg",
+          price_cents: 111,
+          quantity: nil,
+          category_id: @category.id
+        )
+        expect( product ).to_not be_valid
+      end
+  
+      it "is not valid without a category" do
+        product = Product.new(
+          name: "Plant One",
+          description: "It's green and alive.",
+          image: "https://www.houseplantsexpert.com/wp-content/uploads/2022/09/syngonium_podophyllum.jpg",
+          price_cents: 111,
+          quantity: 1111,
+          category_id: nil
+        )
+        expect( product ).to_not be_valid
       end
     end
 

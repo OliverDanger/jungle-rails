@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'session/new'
+  get 'session/create'
+  get 'session/destroy'
   get 'users/signup' => 'users#new'
   get 'users' => 'users#new'
   post 'users' => 'users#create'

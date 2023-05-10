@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
 
       it "is not valid if email already belongs to another user" do 
         @user2 = User.new(
-          email: "ABC@def.ghi",
+          email: "ABC@def.GHI",
           firstname: "Alphabet",
           lastname: "Imposter",
           password: "abcdefg",

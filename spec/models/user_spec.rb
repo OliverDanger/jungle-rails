@@ -24,7 +24,42 @@ RSpec.describe User, type: :model do
         expect( @user ).to_not be_valid
       end
 
-      # to be converted:
+      it "is not valid without an email" do
+        @user.email = nil
+        @user.save
+        expect( @user ).to_not be_valid
+        expect( @user.errors.full_messages ).to eq(["Email can't be blank"])
+      end
+
+      it "is not valid without a first name" do
+        @user.firstname = nil
+        @user.save
+        expect( @user ).to_not be_valid
+        expect( @user.errors.full_messages ).to eq(["Firstname can't be blank"])
+      end
+
+      it "is not valid without a last name" do
+        @user.lastname = nil
+        @user.save
+        expect( @user ).to_not be_valid
+        expect( @user.errors.full_messages ).to eq(["Lastname can't be blank"])
+      end
+
+      it "is not valid if email already belongs to another user" do 
+        @user2 = User.new(
+          email: "ABC@def.ghi",
+          firstname: "Alphabet",
+          lastname: "Imposter",
+          password: "abcdefg",
+          password_confirmation: "abcdefg"
+        )
+        @user.save
+        @user2.save
+        expect( @user2 ).to_not be_valid
+        expect( @user2.errors.full_messages ).to eq(["Email has already been taken"])
+      end
+
+      # examples:
 
       # it "is not valid without a name" do
       #   @product.name = nil
@@ -32,22 +67,6 @@ RSpec.describe User, type: :model do
       #   puts @product.errors.full_messages.inspect
       #   expect( @product ).to_not be_valid
       #   expect( @product.errors.full_messages ).to eq(["Name can't be blank"])
-      # end
-  
-      # it "is not valid without a price" do
-      #   @product.price_cents = nil
-      #   @product.save
-      #   puts @product.errors.full_messages.inspect
-      #   expect( @product ).to_not be_valid
-      #   expect( @product.errors.full_messages ).to eq(["Price cents is not a number", "Price is not a number", "Price can't be blank"])
-      # end
-    
-      # it "is not valid without a quantity" do
-      #   @product.quantity = nil
-      #   @product.save
-      #   puts @product.errors.full_messages.inspect
-      #   expect( @product ).to_not be_valid
-      #   expect( @product.errors.full_messages ).to eq(["Quantity can't be blank"])
       # end
   
       # it "is not valid without a category" do

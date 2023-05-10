@@ -59,6 +59,14 @@ RSpec.describe User, type: :model do
         expect( @user2.errors.full_messages ).to eq(["Email has already been taken"])
       end
 
+      it "is not valid if password length is less than six" do
+        @user.password = "abcdef"
+        @user.password_confirmation = "abcdef"
+        @user.save
+        expect( @user ).to_not be_valid
+        expect( @user.errors.full_messages ).to eq(["Password is too short (minimum is 7 characters)"])
+      end
+
       # examples:
 
       # it "is not valid without a name" do

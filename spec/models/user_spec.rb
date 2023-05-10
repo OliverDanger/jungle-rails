@@ -86,5 +86,17 @@ RSpec.describe User, type: :model do
       # end
     end
 
+    describe '.authenticate_with_credentials' do
+      it "returns the user if email and password match" do 
+        @user.save
+        expect( User.authenticate_with_credentials(@user.email, @user.password) ).to eq(@user)
+      end
+      it "returns nil if email and password don't match" do 
+        @user.save
+        false_password = "qwerty"
+        expect( User.authenticate_with_credentials(@user.email, false_password) ).to eq(nil)
+      end
+    end
+
   end
 end

@@ -66,24 +66,6 @@ RSpec.describe User, type: :model do
         expect( @user ).to_not be_valid
         expect( @user.errors.full_messages ).to eq(["Password is too short (minimum is 7 characters)"])
       end
-
-      # examples:
-
-      # it "is not valid without a name" do
-      #   @product.name = nil
-      #   @product.save
-      #   puts @product.errors.full_messages.inspect
-      #   expect( @product ).to_not be_valid
-      #   expect( @product.errors.full_messages ).to eq(["Name can't be blank"])
-      # end
-  
-      # it "is not valid without a category" do
-      #   @product.category_id = nil
-      #   @product.save
-      #   puts @product.errors.full_messages.inspect
-      #   expect( @product ).to_not be_valid
-      #   expect( @product.errors.full_messages ).to eq(["Category must exist", "Category can't be blank"])
-      # end
     end
 
     describe '.authenticate_with_credentials' do
@@ -95,6 +77,16 @@ RSpec.describe User, type: :model do
         @user.save
         false_password = "qwerty"
         expect( User.authenticate_with_credentials(@user.email, false_password) ).to eq(nil)
+      end
+      it "returns the user if email has leading and trailing spaces" do 
+        @user.email = "   abc@def.ghi  "
+        @user.save
+        expect( User.authenticate_with_credentials(@user.email, @user.password) ).to eq(@user)
+      end
+      it "returns the user if email has differing case" do 
+        @user.email = "AbC@dEf.GhI"
+        @user.save
+        expect( User.authenticate_with_credentials(@user.email, @user.password) ).to eq(@user)
       end
     end
 

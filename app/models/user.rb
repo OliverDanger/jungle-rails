@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
     # verify user on login
   def self.authenticate_with_credentials( email, password)
-    email.downcase
+    email.downcase.strip
     user = User.find_by_email(email)
     if user && user.authenticate(password)
       return user.authenticate(password)

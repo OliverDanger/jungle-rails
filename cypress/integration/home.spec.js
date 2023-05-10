@@ -1,4 +1,4 @@
-describe('# home page ', () => {
+describe('# Home Page ', () => {
   it("There is products on the page", () => {
     cy.visit('/')
     cy.get(".products article").should("be.visible");

@@ -19,6 +19,11 @@ RSpec.describe User, type: :model do
         expect( @user ).to be_valid
       end
 
+      it "is not valid if password is different than password_confirmation" do
+        @user.password = "zyxwvut"
+        expect( @user ).to_not be_valid
+      end
+
       # to be converted:
 
       # it "is not valid without a name" do

@@ -8,7 +8,8 @@ RSpec.describe User, type: :model do
         email: "abc@def.ghi",
         firstname: "Alphabet",
         lastname: "Jones",
-        password_digest: "1234567890"
+        password: "abcdefg",
+        password_confirmation: "abcdefg"
       )
     end
 
@@ -19,7 +20,7 @@ RSpec.describe User, type: :model do
       end
 
       # to be converted:
-      
+
       # it "is not valid without a name" do
       #   @product.name = nil
       #   @product.save

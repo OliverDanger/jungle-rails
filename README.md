@@ -20,6 +20,8 @@ If Rails is complaining about authentication to the database, uncomment the user
 ## Stripe Testing
 
 Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+Use any date in the future for Credit Card expiry date.
+Use any numbers for Credit Card security pin.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
 
@@ -29,3 +31,5 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - Bootstrap 5
 - PostgreSQL 9.x
 - Stripe
+- Bcrypt
+- Cypress-rails

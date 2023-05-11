@@ -1,6 +1,10 @@
 # Jungle
 
-A mini e-commerce application built with Rails 6.1 for purposes of teaching Rails by example.
+A mini e-commerce application built with Rails 6.1 for purposes of teaching Rails by example. 
+Features category and item pages which can be used to browse plants. 
+After adding plants to a cart, view my cart and pay with stripe. 
+Admins may create new products and product categories using a built-in form. 
+
 
 ## Setup
 
@@ -33,3 +37,23 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - Stripe
 - Bcrypt
 - Cypress-rails
+
+## Example 
+
+Welcome!
+![start of home page](docs/start_of_home_page.png)
+
+Browsing plants
+![end of home page](docs/end_of_home_page.png)
+
+My cart
+![my cart](docs/start_of_my_cart.png)
+
+Ready to check out
+![end of my cart](docs/end_of_my_cart.png)
+
+Pay with stripe
+![Pay with stripe](docs/pay_with_stripe.png)
+
+Order confirmation
+![Order confirmation](docs/order_confirmation.png)
